@@ -20,6 +20,7 @@ public class FishTankManager {
 
     /**
      * Return the width of a row of locations.
+     *
      * @return the width of a column of locations.
      */
     public int getGridWidth() {
@@ -28,8 +29,8 @@ public class FishTankManager {
 
     /**
      * Return the height of a column of locations.
-     * @return the height of a column of locations.
      *
+     * @return the height of a column of locations.
      */
     public int getGridHeight() {
         return gridHeight;

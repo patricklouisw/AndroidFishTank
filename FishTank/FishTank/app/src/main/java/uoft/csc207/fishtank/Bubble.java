@@ -10,15 +10,23 @@ import android.graphics.Typeface;
  */
 public class Bubble {
 
-    /** How this bubble appears on the screen. */
+    /**
+     * How this bubble appears on the screen.
+     */
     private String appearance;
 
-    /** Use for random movement left and right.  */
+    /**
+     * Use for random movement left and right.
+     */
     public double d;
 
-    /** This bubble's first coordinate. */
+    /**
+     * This bubble's first coordinate.
+     */
     int x;
-    /** This bubble's second coordinate. */
+    /**
+     * This bubble's second coordinate.
+     */
     protected int y;
 
     private Paint paintText = new Paint();
@@ -37,8 +45,9 @@ public class Bubble {
 
     /**
      * Set this item's location.
+     *
      * @param a the first coordinate.
-     * @param b  the second coordinate.
+     * @param b the second coordinate.
      */
     public void setLocation(int a, int b) {
         // set x to a
@@ -51,10 +60,10 @@ public class Bubble {
      * Draws the given string in the given graphics context at
      * at the given cursor location.
      *
-     * @param  canvas  the graphics context in which to draw the string.
-     * @param  s  the string to draw.
-     * @param  x  the x-coordinate of the string's cursor location.
-     * @param  y  the y-coordinate of the string's cursor location.
+     * @param canvas the graphics context in which to draw the string.
+     * @param s      the string to draw.
+     * @param x      the x-coordinate of the string's cursor location.
+     * @param y      the y-coordinate of the string's cursor location.
      */
     void drawString(Canvas canvas, String s, int x, int y) {
         canvas.drawText(s, y * FishTankView.charWidth, x * FishTankView.charHeight, paintText);
@@ -64,12 +73,11 @@ public class Bubble {
     /**
      * Draws this fish tank item.
      *
-     * @param  canvas  the graphics context in which to draw this item.
+     * @param canvas the graphics context in which to draw this item.
      */
     public void draw(Canvas canvas) {
         drawString(canvas, appearance, y, x);
     }
-
 
 
     /**
@@ -86,11 +94,13 @@ public class Bubble {
         // Oocasinally change a . to a o or a o to a O
         if (d < 0.05) {
             // If the appearance is a ., change it to an o
-            if (appearance.equals("."))appearance="o";
+            if (appearance.equals(".")) appearance = "o";
                 // If the appearance is an o, change it to a O
-            else if (appearance.equals("o"))appearance="O";
+            else if (appearance.equals("o")) appearance = "O";
         }
-    }    /**
+    }
+
+    /**
      * Causes this item to take its turn in the fish-tank simulation, moving up and left.
      */
     public void floatLeftUp() {
@@ -109,6 +119,7 @@ public class Bubble {
             else if (appearance.equals("o")) appearance = "O";
         }
     }
+
     /**
      * Causes this item to take its turn in the fish-tank simulation.
      */
@@ -122,9 +133,9 @@ public class Bubble {
         // Oocasinally change a . to a o or a o to a O
         if (d < 0.05) {
             // If the appearance is a ., change it to an o
-            if (appearance.equals("."))appearance="o";
+            if (appearance.equals(".")) appearance = "o";
                 // If the appearance is an o, change it to a O
-            else if (appearance.equals("o"))appearance="O";
+            else if (appearance.equals("o")) appearance = "O";
         }
     }
 }

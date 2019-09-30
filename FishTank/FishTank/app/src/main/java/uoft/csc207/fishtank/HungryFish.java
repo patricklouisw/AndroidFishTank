@@ -7,15 +7,23 @@ import android.graphics.Typeface;
 
 public class HungryFish {
 
-    /** How this fish appears on the screen. */
+    /**
+     * How this fish appears on the screen.
+     */
     public String appearance;
 
-    /** Indicates whether this fish is moving right. */
+    /**
+     * Indicates whether this fish is moving right.
+     */
     boolean goingRight;
 
-    /** This fish's first coordinate. */
+    /**
+     * This fish's first coordinate.
+     */
     int r;
-    /** This fish's second coordinate. */
+    /**
+     * This fish's second coordinate.
+     */
     int c;
     private Paint paintText = new Paint();
 
@@ -34,14 +42,14 @@ public class HungryFish {
 
     /**
      * Set this item's location.
+     *
      * @param a the first coordinate.
-     * @param b  the second coordinate.
+     * @param b the second coordinate.
      */
     public void setLocation(int a, int b) {
         r = a;
         c = b;
     }
-
 
 
     /**
@@ -56,7 +64,6 @@ public class HungryFish {
     }
 
 
-
     /**
      * Build and initialize this fish's forward and backward
      * appearances.
@@ -64,17 +71,35 @@ public class HungryFish {
     private String reverseAppearance() {
         System.out.println("Turnign around" + this.appearance);
         String reverse = "";
-        for (int i=appearance.length()-1; i>=0; i--) {
+        for (int i = appearance.length() - 1; i >= 0; i--) {
             switch (appearance.charAt(i)) {
-                case ')': reverse += '('; break;
-                case '(': reverse += ')'; break;
-                case '>': reverse += '<'; break;
-                case '<': reverse += '>'; break;
-                case '}': reverse += '{'; break;
-                case '{': reverse += '}'; break;
-                case '[': reverse += ']'; break;
-                case ']': reverse += '['; break;
-                default: reverse += appearance.charAt(i); break;
+                case ')':
+                    reverse += '(';
+                    break;
+                case '(':
+                    reverse += ')';
+                    break;
+                case '>':
+                    reverse += '<';
+                    break;
+                case '<':
+                    reverse += '>';
+                    break;
+                case '}':
+                    reverse += '{';
+                    break;
+                case '{':
+                    reverse += '}';
+                    break;
+                case '[':
+                    reverse += ']';
+                    break;
+                case ']':
+                    reverse += '[';
+                    break;
+                default:
+                    reverse += appearance.charAt(i);
+                    break;
             }
         }
         System.out.println("Turned around" + this.appearance);
@@ -100,26 +125,24 @@ public class HungryFish {
      * Draws the given string in the given graphics context at
      * at the given cursor location.
      *
-     * @param  canvas  the canvas on which to draw this item.
-     * @param  s  the string to draw.
-     * @param  x  the x-coordinate of the string's cursor location.
-     * @param  y  the y-coordinate of the string's cursor location.
+     * @param canvas the canvas on which to draw this item.
+     * @param s      the string to draw.
+     * @param x      the x-coordinate of the string's cursor location.
+     * @param y      the y-coordinate of the string's cursor location.
      */
     void drawString(Canvas canvas, String s, int x, int y) {
         canvas.drawText(s, y * FishTankView.charWidth, x * FishTankView.charHeight, paintText);
     }
 
 
-
     /**
      * Draws this fish tank item.
      *
-     * @param  canvas  the canvas on which to draw this item.
+     * @param canvas the canvas on which to draw this item.
      */
     public void draw(Canvas canvas) {
         drawString(canvas, appearance, r, c);
     }
-
 
 
     /**
@@ -137,12 +160,16 @@ public class HungryFish {
         // Figure out whether I blow a bubble.
         double d = Math.random();
         // If it's elss tahn 10%, blow a bubble.
-        if (d < 0.1) { blowBubble(); }
+        if (d < 0.1) {
+            blowBubble();
+        }
 
         // Figure out whether I turn around.
         d = Math.random();
         // If it's elss tahn 10%, turn around
-        if (d < 0.1) { turnAround(); }
+        if (d < 0.1) {
+            turnAround();
+        }
 
         // Figure out whether to move up or down, or neither.
         d = Math.random();
