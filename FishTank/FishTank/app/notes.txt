@@ -13,3 +13,9 @@ Reformatted using the Google Java style formatter.
 Code affected: Fish.turnAround
 Flaw: unnecessary if, leading to duplicate code.
 Fix: replaced if statement with a single assignment statement.
+
+#########
+# Step 4
+Code affected: Scope of variable appearance in Fish.java
+Flaw: this variable can be private
+Fix: make this variable private
