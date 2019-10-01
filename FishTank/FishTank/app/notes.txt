@@ -52,13 +52,13 @@ Fix: make this method private
 
 #########
 # Step 10
-Code affected: variable paintText
+Code affected: variable paintText in Fish.java
 Flaw: since the paintText will not be changed later, hence, we can set it as final
 Fix: add final to the variable
 
 #########
 # Step 11
-Code affected: method reverseAppearance()
+Code affected: Fish.reverseAppearance()
 Flaw: String concatenation in a loop. Since reverse is of reference type String, hence
 "reverse += ***" will make java to create a new reverse String with a new String. As such,
 it used a lot of memory.
