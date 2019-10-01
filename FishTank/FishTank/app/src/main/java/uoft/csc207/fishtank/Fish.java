@@ -29,7 +29,7 @@ public class Fish {
      */
     private int c;
 
-    private Paint paintText = new Paint();
+    private final Paint paintText = new Paint();
 
     /**
      * Constructs a new fish.

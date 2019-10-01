@@ -45,7 +45,13 @@ Flaw: this method can be private
 Fix: make this method private
 
 #########
-# Step 7
+# Step 9
 Code affected: Scope of method drawString in Fish.java
 Flaw: this method can be private
 Fix: make this method private
+
+#########
+# Step 10
+Code affected: variable paintText
+Flaw: since the paintText will not be changed later, hence, we can set it as final
+Fix: add final to the variable
