@@ -31,3 +31,9 @@ Fix: make this variable private
 Code affected: Scope of variable r in Fish.java
 Flaw: this variable can be private
 Fix: make this variable private
+
+#########
+# Step 7
+Code affected: Scope of method blowBubble in Fish.java
+Flaw: this method can be private
+Fix: make this method private

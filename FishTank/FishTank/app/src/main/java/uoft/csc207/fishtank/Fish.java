@@ -58,7 +58,7 @@ public class Fish {
     /**
      * Causes this fish to blow a bubble.
      */
-    protected void blowBubble() {
+    private void blowBubble() {
         Bubble b = new Bubble();
         b.setLocation(c, r);
         System.out.println(r + " " + c);
