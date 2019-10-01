@@ -46,7 +46,7 @@ Fix: make this method private
 
 #########
 # Step 9
-Code affected: Scope of method drawString in Fish.java
+Code affected: Scope of method drawString() in Fish.java
 Flaw: this method can be private
 Fix: make this method private
 
@@ -55,3 +55,13 @@ Fix: make this method private
 Code affected: variable paintText
 Flaw: since the paintText will not be changed later, hence, we can set it as final
 Fix: add final to the variable
+
+#########
+# Step 11
+Code affected: method reverseAppearance()
+Flaw: String concatenation in a loop. Since reverse is of reference type String, hence
+"reverse += ***" will make java to create a new reverse String with a new String. As such,
+it used a lot of memory.
+Fix: 1) instead of String reverse = "", StringBuilder reverse = new StringBuilder() is used.
+     2) change any reverse += *** into reverse.append(***)
+     3) change return reverse into return reverse.toString()

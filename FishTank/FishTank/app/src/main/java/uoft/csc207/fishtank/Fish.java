@@ -72,42 +72,40 @@ public class Fish {
      * appearances.
      */
     private String reverseAppearance() {
-        String reverse = "";
+        StringBuilder reverse = new StringBuilder();
         for (int i = appearance.length() - 1; i >= 0; i--) {
             switch (appearance.charAt(i)) {
                 case ')':
-                    reverse += '(';
+                    reverse.append('(');
                     break;
                 case '(':
-                    reverse += ')';
+                    reverse.append(')');
                     break;
                 case '>':
-                    reverse += '<';
+                    reverse.append('<');
                     break;
                 case '<':
-                    reverse += '>';
+                    reverse.append('>');
                     break;
                 case '}':
-                    reverse += '{';
+                    reverse.append('{');
                     break;
                 case '{':
-                    reverse += '}';
+                    reverse.append('}');
                     break;
                 case '[':
-                    reverse += ']';
+                    reverse.append(']');
                     break;
                 case ']':
-                    reverse += '[';
+                    reverse.append('[');
                     break;
                 default:
-                    reverse += appearance.charAt(i);
+                    reverse.append(appearance.charAt(i));
                     break;
             }
         }
-
-        return reverse;
+        return reverse.toString();
     }
-
 
     /**
      * Turns this fish around, causing it to reverse direction.
