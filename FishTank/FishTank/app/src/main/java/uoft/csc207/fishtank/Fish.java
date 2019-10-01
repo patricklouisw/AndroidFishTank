@@ -112,7 +112,7 @@ public class Fish {
     /**
      * Turns this fish around, causing it to reverse direction.
      */
-    protected void turnAround() {
+    private void turnAround() {
         goingRight = !goingRight;
         appearance = reverseAppearance();
     }
@@ -126,7 +126,7 @@ public class Fish {
      * @param x      the x-coordinate of the string's cursor location.
      * @param y      the y-coordinate of the string's cursor location.
      */
-    void drawString(Canvas canvas, String s, int x, int y) {
+    private void drawString(Canvas canvas, String s, int x, int y) {
         canvas.drawText(s, y * FishTankView.charWidth, x * FishTankView.charHeight, paintText);
     }
 

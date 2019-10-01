@@ -37,3 +37,15 @@ Fix: make this variable private
 Code affected: Scope of method blowBubble in Fish.java
 Flaw: this method can be private
 Fix: make this method private
+
+#########
+# Step 8
+Code affected: Scope of method turnAround in Fish.java
+Flaw: this method can be private
+Fix: make this method private
+
+#########
+# Step 7
+Code affected: Scope of method drawString in Fish.java
+Flaw: this method can be private
+Fix: make this method private
