@@ -18,12 +18,12 @@ public class Fish {
     /**
      * Indicates whether this fish is moving right.
      */
-    boolean goingRight;
+    private boolean goingRight;
 
     /**
      * This fish's first coordinate.
      */
-    int r;
+    private int r;
     /**
      * This fish's second coordinate.
      */
