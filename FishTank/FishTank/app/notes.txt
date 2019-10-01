@@ -65,3 +65,9 @@ it used a lot of memory.
 Fix: 1) instead of String reverse = "", StringBuilder reverse = new StringBuilder() is used.
      2) change any reverse += *** into reverse.append(***)
      3) change return reverse into return reverse.toString()
+
+#########
+# Step 12
+Code affected:
+Flaw:
+Fix:
