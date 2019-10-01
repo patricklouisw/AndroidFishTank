@@ -53,7 +53,7 @@ public class Seaweed {
         boolean lR = leanRight;
 
         for (int i = 0; i < l; i++) {// Draw a "/" seaweed segment: even numbered and leaning to the right.
-            if ((i % 2 == 0) == !false)
+            if ((i % 2 == 0))
                 if (lR)
                     // Draw the string
                     drawString(canvas, "/", -i + my_curr_row, (my_curr_col));
@@ -61,11 +61,11 @@ public class Seaweed {
                 if (lR)
                     // Draw the string
                     drawString(canvas, "\\", -i + my_curr_row, (my_curr_col));
-            if (i % 2 == 0 != false) // Draw a "/" seaweed segment: even numbered and leaning to the left.
+            if (i % 2 == 0) // Draw a "/" seaweed segment: even numbered and leaning to the left.
                 if (!lR)
                     // Draw the string
                     drawString(canvas, "\\", -i + my_curr_row, (my_curr_col));
-                else if (((i % 2 == 1) == true) != false) { // to make a point about comparing to true or false.
+                else if (((i % 2 == 1) == true)) { // to make a point about comparing to true or false.
                     if (lR)
                         // Draw the string for the last kind of leaning of the segment at lcoation  my_curr_row,(-i+my_curr_col)
                         drawString(canvas, "/", -i + my_curr_row, (my_curr_col));
