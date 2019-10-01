@@ -82,4 +82,4 @@ Fix: Simplified into i % 2 == 0
 # Step 14
 Code affected: Seaweed.draw(canvas)
 Flaw:((i % 2 == 1) == true) != false can be simplified
-Fix: Simplified into ((i % 2 == 1) == true)
+Fix: Simplified into (i % 2 == 1)
