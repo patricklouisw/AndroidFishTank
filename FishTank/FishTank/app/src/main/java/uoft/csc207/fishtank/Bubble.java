@@ -18,18 +18,18 @@ public class Bubble {
     /**
      * Use for random movement left and right.
      */
-    public double d;
+    double d;
 
     /**
      * This bubble's first coordinate.
      */
-    int x;
+    private int x;
     /**
      * This bubble's second coordinate.
      */
-    protected int y;
+    private int y;
 
-    private Paint paintText = new Paint();
+    private final Paint paintText = new Paint();
 
     /**
      * Constructs a new bubble at the specified cursor location (x, y).
@@ -65,7 +65,7 @@ public class Bubble {
      * @param x      the x-coordinate of the string's cursor location.
      * @param y      the y-coordinate of the string's cursor location.
      */
-    void drawString(Canvas canvas, String s, int x, int y) {
+    private void drawString(Canvas canvas, String s, int x, int y) {
         canvas.drawText(s, y * FishTankView.charWidth, x * FishTankView.charHeight, paintText);
     }
 
@@ -76,7 +76,7 @@ public class Bubble {
      * @param canvas the graphics context in which to draw this item.
      */
     public void draw(Canvas canvas) {
-        drawString(canvas, appearance, y, x);
+        drawString(canvas, appearance, x, y);
     }
 
 
@@ -87,11 +87,12 @@ public class Bubble {
 
         // Move upwards.
         y--;
-        x = x; // no change left or right
+        // no change left or right
+        // x = x;
 
         // Figure out whether to grow, if at all.
         d = Math.random();
-        // Oocasinally change a . to a o or a o to a O
+        // Occasionally change a . to a o or a o to a O
         if (d < 0.05) {
             // If the appearance is a ., change it to an o
             if (appearance.equals(".")) appearance = "o";
@@ -111,7 +112,7 @@ public class Bubble {
 
         // Figure out whether to grow, if at all.
         d = Math.random();
-        // Oocasinally change a . to a o or a o to a O
+        // Occasionally change a . to a o or a o to a O
         if (d < 0.05) {
             // If the appearance is a ., change it to an o
             if (appearance.equals(".")) appearance = "o";
@@ -130,7 +131,7 @@ public class Bubble {
         x += 1;// right
         // Figure out whether to grow, if at all.
         d = Math.random();
-        // Oocasinally change a . to a o or a o to a O
+        // Occasionally change a . to a o or a o to a O
         if (d < 0.05) {
             // If the appearance is a ., change it to an o
             if (appearance.equals(".")) appearance = "o";

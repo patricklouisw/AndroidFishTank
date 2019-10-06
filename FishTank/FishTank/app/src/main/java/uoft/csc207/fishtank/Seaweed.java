@@ -6,31 +6,37 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 
 public class Seaweed {
-    private Paint paintText = new Paint();
+
+    /**
+     * This seaweed's current row.
+     */
+    private int my_curr_row;
+    /**
+     * This seaweed's current column.
+     */
+    private int my_curr_col;
+
+    /**
+     * This is seaweed's colour
+     */
+    private final Paint paintText = new Paint();
 
 
     /**
      * The number of weed segments.
      */
-    int l;
+    private final int l;
 
     /**
      * Indicates whether the bottom segment is leaning right.
      */
-    boolean leanRight;
-
-    /**
-     * My colour. Ah,the vagaries of British vs. US spelling.
-     */
-    Color colour;
+    private boolean leanRight;
 
 
     /**
      * Constructs a new seaweed item at the specified cursor
      * location (x,y),l segments tall.
      *
-     * @param x the x coordinate of the bubble's cursor location.
-     * @param y the y coordinate of the bubble's cursor location.
      * @param l the number of segments this seaweed is tall.
      */
     public Seaweed(int l) {
@@ -40,35 +46,31 @@ public class Seaweed {
         paintText.setTypeface(Typeface.DEFAULT_BOLD);
     }
 
-
     /**
      * Draws this fish tank item.  Looks lovely waving in the current, doesn't
      * it?
      *
      * @param canvas the graphics context in which to draw this item.
      */
-    public void draw(Canvas canvas) {
+    void draw(Canvas canvas) {
 
-        // WWhich way does the first segment lean?
+        // Which way does the first segment lean?
         boolean lR = leanRight;
 
-        for (int i = 0; i < l; i++) {// Draw a "/" seaweed segment: even numbered and leaning to the right.
-            if ((i % 2 == 0))
-                if (lR)
-                    // Draw the string
-                    drawString(canvas, "/", -i + my_curr_row, (my_curr_col));
-            if (i % 2 == 1 == true) // Draw a "/" seaweed segment: odd numbered and leaning to the right.
-                if (lR)
-                    // Draw the string
-                    drawString(canvas, "\\", -i + my_curr_row, (my_curr_col));
-            if (i % 2 == 0) // Draw a "/" seaweed segment: even numbered and leaning to the left.
-                if (!lR)
-                    // Draw the string
-                    drawString(canvas, "\\", -i + my_curr_row, (my_curr_col));
-                else if (i % 2 == 1) { // to make a point about comparing to true or false.
-                    if (lR)
-                        // Draw the string for the last kind of leaning of the segment at lcoation  my_curr_row,(-i+my_curr_col)
-                        drawString(canvas, "/", -i + my_curr_row, (my_curr_col));
+        for (int i = 0; i < l; i++) {
+            if ((i % 2 == 0) && lR)
+                // Draw a "/" seaweed segment: even numbered and leaning to the right.
+                drawString(canvas, "/", -i + my_curr_row, (my_curr_col));
+            else if (i % 2 == 0) {
+                // Draw a "\\" seaweed segment: even numbered and leaning to the left.
+                drawString(canvas, "\\", -i + my_curr_row, (my_curr_col));
+            }
+            else if (lR) {
+                // Draw a "/" seaweed segment: odd numbered and leaning to the right.
+                drawString(canvas, "\\", -i + my_curr_row, (my_curr_col));
+            } else{
+                // Draw the string for the last kind of leaning of the segment at location  my_curr_row,(-i+my_curr_col)
+                drawString(canvas, "/", -i + my_curr_row, (my_curr_col));
                 }
         }
     }
@@ -82,10 +84,9 @@ public class Seaweed {
      * @param x      the x-coordinate of the string's cursor location.
      * @param y      the y-coordinate of the string's cursor location.
      */
-    void drawString(Canvas canvas, String s, int x, int y) {
+    private void drawString(Canvas canvas, String s, int x, int y) {
         canvas.drawText(s, y * FishTankView.charWidth, x * FishTankView.charHeight, paintText);
     }
-
 
     /**
      * Set this item's location.
@@ -93,7 +94,7 @@ public class Seaweed {
      * @param a the first coordinate.
      * @param b the second coordinate.
      */
-    public void setLocation(int a, int b) {
+    void setLocation(int a, int b) {
         this.my_curr_row = a;
         this.my_curr_col = b;
     }
@@ -101,19 +102,8 @@ public class Seaweed {
     /**
      * Causes this item to take its turn in the fish-tank simulation.
      */
-    public void wave() {
+    void wave() {
         leanRight = !leanRight;
     }
-
-
-    /**
-     * This bubble's first coordinate.
-     */
-    private int my_curr_row;
-    /**
-     * This bubble's second coordinate.
-     */
-    private int my_curr_col;
-
 
 }

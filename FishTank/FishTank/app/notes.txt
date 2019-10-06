@@ -83,3 +83,127 @@ Fix: Simplified into i % 2 == 0
 Code affected: Seaweed.draw(canvas)
 Flaw:((i % 2 == 1) == true) != false can be simplified
 Fix: Simplified into (i % 2 == 1)
+
+#########
+# Step 15
+Code affected:  Bubble.d
+Flaw: variable can be package private
+Fix: variable is made package private
+
+#########
+# Step 16
+Code affected: Bubble.x (int)
+Flaw: variable x can be private
+Fix: variable x is made private
+
+#########
+# Step 17
+Code affected: Bubble.y (int)
+Flaw: variable y can be private
+Fix: variable y is made private
+
+#########
+# Step 18
+Code affected: Bubble.paintText
+Flaw: variable paintText can be made final as it doesn't need to be change later
+Fix: paintText is made final
+
+#########
+# Step 19
+Code affected: Bubble.drawString
+Flaw: method can be made private
+Fix: method is made private
+
+#########
+# Step 20
+Code affected: Bubble.floatStraightUp()
+Flaw: x is assigned to itself (x = x)
+Fix: delete the x = x
+
+#########
+# Step 21
+Code affected: Bubble.draw
+Flaw: the variables x and y are switched in the method drawString in the body of draw
+Fix: switched the variable x and y
+
+#########
+# Step 22
+Code affected: Seaweed constructor comments redundancy
+Flaw: The parameter x and y is defined in Seaweed but is not in the constructor
+Fix: Delete it
+
+#########
+# Step 23
+Code affected: Variables in Seaweed
+Flaw: my_curr_row and my_curr_col is defined at the bottom of the class
+Fix: For better flow of the code, I am defining the 2 variables on top.
+
+#########
+# Step 24
+Code affected: Seaweed.l
+Flaw: variable l should be made private
+Fix: make variable l private
+
+#########
+# Step 25
+Code affected: Seaweed.leanRight
+Flaw: variable leanRight should be made private
+Fix: make variable leanRight private
+
+#########
+# Step 26
+Code affected: Seaweed.colour
+Flaw: The field colour is never used
+Fix: Delete it
+
+#########
+# Step 27
+Code affected: Seaweed.drawString
+Flaw: drawString should be made private as it is a helper method
+Fix: make it private
+
+#########
+# Step 28
+Code affected: Seaweed.paintText
+Flaw: paintText should be made final because the colour of the Seaweed shouldn't be changed later on
+Fix:make it final
+
+#########
+# Step 29
+Code affected: Seaweed.l
+Flaw: l should be made final, because the number of seaweed is fixed in the aquarium
+Fix: make it final
+
+#########
+# Step 30
+Code affected: Seaweed.draw()
+Flaw: It can be made package-private to prevent access of user
+Fix: Make it package-private
+
+#########
+# Step 31
+Code affected: Seaweed.setLocation()
+Flaw: It can be made package-private to prevent access of user
+Fix: Make it package-private
+
+#########
+# Step 32
+Code affected: Seaweed.wave()
+Flaw: It can be made package-private to prevent access of user
+Fix: Make it package-private
+
+#########
+# Step 33
+Code affected: Seaweed.draw()
+Flaw: the if condition (i % 2 == 1 == true) has a redundant part
+Fix: change to (i % 2 == 1) instead
+
+#########
+# Step 34
+Code affected: Seaweed.draw()
+Flaw: Most of the if conditions can be simplified further
+Fix:    change
+    if((i % 2 == 0))
+        if(lR){...}
+        to
+    if((i % 2 == 0) && lR){...}
