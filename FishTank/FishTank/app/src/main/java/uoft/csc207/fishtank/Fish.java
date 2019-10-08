@@ -8,33 +8,25 @@ import android.graphics.Typeface;
 /**
  * A fish.
  */
-public class Fish {
+public class Fish extends Items {
 
     /**
      * How this fish appears on the screen.
      */
-    private String appearance;
+    String appearance;
 
     /**
      * Indicates whether this fish is moving right.
      */
-    private boolean goingRight;
+    boolean goingRight;
 
-    /**
-     * This fish's first coordinate.
-     */
-    private int r;
-    /**
-     * This fish's second coordinate.
-     */
-    private int c;
-
-    private final Paint paintText = new Paint();
+    final Paint paintText = new Paint();
 
     /**
      * Constructs a new fish.
      */
-    public Fish() {
+    public Fish(int x, int y) {
+        super(x, y);
         appearance = "><>";
         paintText.setTextSize(36);
         paintText.setColor(Color.CYAN);
@@ -44,24 +36,11 @@ public class Fish {
 
 
     /**
-     * Set this item's location.
-     *
-     * @param a the first coordinate.
-     * @param b the second coordinate.
-     */
-    public void setLocation(int a, int b) {
-        r = a;
-        c = b;
-    }
-
-
-    /**
      * Causes this fish to blow a bubble.
      */
-    private void blowBubble() {
-        Bubble b = new Bubble();
-        b.setLocation(c, r);
-        System.out.println(r + " " + c);
+    public void blowBubble() {
+        Bubble b = new Bubble(x, y);
+        System.out.println(x + " " + y);
 
         FishTankManager.myLittleFishies[r][c] = b;
     }
@@ -71,7 +50,7 @@ public class Fish {
      * Build and initialize this fish's forward and backward
      * appearances.
      */
-    private String reverseAppearance() {
+    public String reverseAppearance() {
         StringBuilder reverse = new StringBuilder();
         for (int i = appearance.length() - 1; i >= 0; i--) {
             switch (appearance.charAt(i)) {
@@ -110,7 +89,7 @@ public class Fish {
     /**
      * Turns this fish around, causing it to reverse direction.
      */
-    private void turnAround() {
+    public void turnAround() {
         goingRight = !goingRight;
         appearance = reverseAppearance();
     }
@@ -124,7 +103,7 @@ public class Fish {
      * @param x      the x-coordinate of the string's cursor location.
      * @param y      the y-coordinate of the string's cursor location.
      */
-    private void drawString(Canvas canvas, String s, int x, int y) {
+    public void drawString(Canvas canvas, String s, int x, int y) {
         canvas.drawText(s, y * FishTankView.charWidth, x * FishTankView.charHeight, paintText);
     }
 
@@ -138,17 +117,10 @@ public class Fish {
         drawString(canvas, appearance, r, c);
     }
 
-
     /**
      * Causes this item to take its turn in the fish-tank simulation.
      */
     public void move() {
-
-        // Figure out whether I turn around.
-        double d = Math.random();
-        if (d < 0.1) {
-            turnAround();
-        }
 
         // Move one spot to the right or left in the direction I'm going. If I bump into a wall,
         // turn around.
@@ -159,11 +131,16 @@ public class Fish {
         }
 
         // Figure out whether I blow a bubble.
-        d = Math.random();
+        double d = Math.random();
         if (d < 0.1) {
             blowBubble();
         }
 
+        // Figure out whether I turn around.
+        d = Math.random();
+        if (d < 0.1) {
+            turnAround();
+        }
 
         // Figure out whether to move up or down, or neither.
         d = Math.random();

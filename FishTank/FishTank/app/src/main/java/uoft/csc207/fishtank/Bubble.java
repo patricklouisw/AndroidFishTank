@@ -8,33 +8,20 @@ import android.graphics.Typeface;
 /**
  * A bubble.
  */
-public class Bubble {
+public class Bubble extends Items {
 
     /**
      * How this bubble appears on the screen.
      */
     private String appearance;
 
-    /**
-     * Use for random movement left and right.
-     */
-    double d;
-
-    /**
-     * This bubble's first coordinate.
-     */
-    private int x;
-    /**
-     * This bubble's second coordinate.
-     */
-    private int y;
-
-    private final Paint paintText = new Paint();
+    final Paint paintText = new Paint();
 
     /**
      * Constructs a new bubble at the specified cursor location (x, y).
      */
-    public Bubble() {
+    public Bubble(int x, int y) {
+        super(x, y);
         // Get a nice-looking grey for the bubble
         paintText.setTextSize(36);
         paintText.setColor(Color.LTGRAY);
@@ -44,51 +31,26 @@ public class Bubble {
     }
 
     /**
-     * Set this item's location.
-     *
-     * @param a the first coordinate.
-     * @param b the second coordinate.
-     */
-    public void setLocation(int a, int b) {
-        // set x to a
-        x = a;
-        // set y to b
-        y = b;
-    }
-
-    /**
-     * Draws the given string in the given graphics context at
-     * at the given cursor location.
-     *
-     * @param canvas the graphics context in which to draw the string.
-     * @param s      the string to draw.
-     * @param x      the x-coordinate of the string's cursor location.
-     * @param y      the y-coordinate of the string's cursor location.
-     */
-    private void drawString(Canvas canvas, String s, int x, int y) {
-        canvas.drawText(s, y * FishTankView.charWidth, x * FishTankView.charHeight, paintText);
-    }
-
-
-    /**
      * Draws this fish tank item.
      *
      * @param canvas the graphics context in which to draw this item.
      */
     public void draw(Canvas canvas) {
-        drawString(canvas, appearance, x, y);
+        canvas.drawText(appearance, x * FishTankView.charWidth, y * FishTankView.charHeight, paintText);
+
     }
 
+    public void moveItem() {
+        y--; //move up
+        double d = Math.random();
 
-    /**
-     * Causes this item to take its turn in the fish-tank simulation, moving straight up.
-     */
-    public void floatStraightUp() {
-
-        // Move upwards.
-        y--;
-        // no change left or right
-        // x = x;
+        if (d < 0.3) {
+            // float right
+            x++;
+        } else if (d > 0.6) {
+            // float left
+            x--;
+        }
 
         // Figure out whether to grow, if at all.
         d = Math.random();
@@ -99,44 +61,7 @@ public class Bubble {
                 // If the appearance is an o, change it to a O
             else if (appearance.equals("o")) appearance = "O";
         }
+
     }
 
-    /**
-     * Causes this item to take its turn in the fish-tank simulation, moving up and left.
-     */
-    public void floatLeftUp() {
-
-        // Move upwards.
-        y--;
-        x -= 1; //left
-
-        // Figure out whether to grow, if at all.
-        d = Math.random();
-        // Occasionally change a . to a o or a o to a O
-        if (d < 0.05) {
-            // If the appearance is a ., change it to an o
-            if (appearance.equals(".")) appearance = "o";
-                // If the appearance is an o, change it to a O
-            else if (appearance.equals("o")) appearance = "O";
-        }
-    }
-
-    /**
-     * Causes this item to take its turn in the fish-tank simulation.
-     */
-    public void floatRightUp() {
-
-        // Move upwards.
-        y--;
-        x += 1;// right
-        // Figure out whether to grow, if at all.
-        d = Math.random();
-        // Occasionally change a . to a o or a o to a O
-        if (d < 0.05) {
-            // If the appearance is a ., change it to an o
-            if (appearance.equals(".")) appearance = "o";
-                // If the appearance is an o, change it to a O
-            else if (appearance.equals("o")) appearance = "O";
-        }
-    }
 }

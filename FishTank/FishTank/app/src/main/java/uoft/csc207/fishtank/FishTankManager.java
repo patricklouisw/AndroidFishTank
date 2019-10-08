@@ -8,14 +8,16 @@ public class FishTankManager {
      * All the locations where a fish can be.
      */
     public static Object[][] myLittleFishies;
+
     /**
      * The width of myLittleFishes.
      */
-    private int gridWidth;
+    private final int gridWidth;
+
     /**
      * The height of myLittleFishes.
      */
-    private int gridHeight;
+    private final int gridHeight;
 
 
     /**

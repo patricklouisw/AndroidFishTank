@@ -108,10 +108,3 @@ public class FishTankView extends SurfaceView implements SurfaceHolder.Callback 
 
 
 }
-
-
-
-
-
-
-

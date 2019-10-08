@@ -14,196 +14,212 @@ Code affected: Fish.turnAround
 Flaw: unnecessary if, leading to duplicate code.
 Fix: replaced if statement with a single assignment statement.
 
+I realised that there are a lot of changes I need to make from the previous revision as
+most of the revisions only utilised the Inspect Code function of Android Studio.
+
+From this experience, I realised that I need to draw a memory model and understand thoroughly,
+what each and every code are doing in order to proceed. So, below is the better revision I made.
+
 #########
 # Step 4
-Code affected: Scope of variable appearance in Fish.java
-Flaw: this variable can be private
-Fix: make this variable private
+Code affected: Items.java
+Flaw: Apparently, some of the items like bubble, seaweeds, fish, and hungryfish have methods that
+are in common.
+Fix: Hence, instead of repeating it in every class, we will make an abstract class Item to have the
+abstract methods, variables and constructors.
 
 #########
 # Step 5
-Code affected: Scope of variable goingRight in Fish.java
-Flaw: this variable can be private
-Fix: make this variable private
+Code affected: Items.java
+Flaw: No variable has been added.
+Fix: Since all items have a coordinate somewhere, I am adding 2 variables int x
 
 #########
 # Step 6
-Code affected: Scope of variable r in Fish.java
-Flaw: this variable can be private
-Fix: make this variable private
+Code affected: Items.java
+Flaw: No abstract constructor has been added
+Fix: Adding a Items constructor with variable int x, and int y and a method body
+
 
 #########
 # Step 7
-Code affected: Scope of method blowBubble in Fish.java
-Flaw: this method can be private
-Fix: make this method private
+Code affected: Items.java
+Flaw: No methods have been added yet
+Fix: Add the abstract method draw(Canvas canvas) and moveItem() in Items.java
+
 
 #########
 # Step 8
-Code affected: Scope of method turnAround in Fish.java
-Flaw: this method can be private
-Fix: make this method private
+Code affected: Items.java
+Flaw: No abstract constructor has been added
+Fix: Adding a Items constructor with variable int x, and int y and a method body
+
 
 #########
 # Step 9
-Code affected: Scope of method drawString() in Fish.java
-Flaw: this method can be private
-Fix: make this method private
+Code affected: Bubble.java
+Flaw: Bubble is a an item in a Fish tank which can be inherited from Items.
+Fix: Extend Bubble to Items.
 
 #########
 # Step 10
-Code affected: variable paintText in Fish.java
-Flaw: since the paintText will not be changed later, hence, we can set it as final
-Fix: add final to the variable
+Code affected: Bubble.setLocation()
+Flaw: Bubble.setLocation is no longer useful as we change the coordinate system.
+Fix: Erased it
 
 #########
 # Step 11
-Code affected: Fish.reverseAppearance()
-Flaw: String concatenation in a loop. Since reverse is of reference type String, hence
-"reverse += ***" will make java to create a new reverse String with a new String. As such,
-it used a lot of memory.
-Fix: 1) instead of String reverse = "", StringBuilder reverse = new StringBuilder() is used.
-     2) change any reverse += *** into reverse.append(***)
-     3) change return reverse into return reverse.toString()
+Code affected: Bubble constructor
+Flaw: Use the abstract constructor and inherit it to bubble
+Fix: Use the abstract constructor and inherit it to bubble
 
 #########
 # Step 12
-Code affected: Seaweed.draw(canvas)
-Flaw:(i % 2 == 0) == !false can be simplified
-Fix: Simplified into (i % 2 == 0)
+Code affected: Bubble.draw() and Bubble.drawString()
+Flaw: Since the method drawString() is a very simple helper function for draw(), we
+can simply merge them together
+Fix: Put the body of drawString() to draw() with few modifications to fir the method.
 
 #########
 # Step 13
-Code affected: Seaweed.draw(canvas)
-Flaw:i % 2 == 0 != false can be simplified
-Fix: Simplified into i % 2 == 0
+Code affected: Bubble.floatStraight(), Bubble.floatLeft(), and Bubble.floatRight()
+Flaw:
+1. Since the code for the difference appearance of the bubbles are the same,
+we can merge this process together.
+2. Since we can manage the randomness of the number to manage whether the bubble should
+go to the right or the left or straight up, we can simply merge these processes together.
+Fix: Merge these together into a simpler if conditions.
 
 #########
 # Step 14
-Code affected: Seaweed.draw(canvas)
-Flaw:((i % 2 == 1) == true) != false can be simplified
-Fix: Simplified into (i % 2 == 1)
+Code affected: Seaweed.java
+Flaw: Seaweed is an item in the Tank, we can extend Items to Seaweed
+Fix: Extend it.
 
 #########
 # Step 15
-Code affected:  Bubble.d
-Flaw: variable can be package private
-Fix: variable is made package private
+Code affected: Seaweed.my_curr_row and Seaweed.my_curr_col
+Flaw: Since we have an abstract class Items, we can use the abstract constructors to
+save the x and y coordinate.
+Fix: So, we delete it.
 
 #########
 # Step 16
-Code affected: Bubble.x (int)
-Flaw: variable x can be private
-Fix: variable x is made private
+Code affected: Seaweed.setLocation()
+Flaw: There's no longer a need for this method
+Fix: Erase it
 
 #########
 # Step 17
-Code affected: Bubble.y (int)
-Flaw: variable y can be private
-Fix: variable y is made private
+Code affected: Seaweed constructor
+Flaw: Seaweed constructors need to use abstract constructor Item.
+Fix: call super in it.
 
 #########
 # Step 18
-Code affected: Bubble.paintText
-Flaw: variable paintText can be made final as it doesn't need to be change later
-Fix: paintText is made final
+Code affected: Seaweed.draw()
+Flaw: There are still old variables that in the method draw()
+Fix: Change it my_curr_row and my_curr_col to x and y respectively.
 
 #########
 # Step 19
-Code affected: Bubble.drawString
-Flaw: method can be made private
-Fix: method is made private
+Code affected: Seaweed.draw()
+Flaw: The if statements can be simplify further, so it is more effecient.
+Fix: Change the if conditions and body to a better one.
 
 #########
 # Step 20
-Code affected: Bubble.floatStraightUp()
-Flaw: x is assigned to itself (x = x)
-Fix: delete the x = x
+Code affected: Seaweed.wave()
+Flaw: To align ourselves with the abstract class, we need a method called moveItem()
+to be implemented, which will move the item and wave() do exactly the same.
+Fix: Change the name from wave() to moveItem()
 
 #########
 # Step 21
-Code affected: Bubble.draw
-Flaw: the variables x and y are switched in the method drawString in the body of draw
-Fix: switched the variable x and y
+Code affected: Fish.java
+Flaw: Fish is an item in the fish tank, so it needs to be inherited from Items
+Fix: extends Fish to Items
 
 #########
 # Step 22
-Code affected: Seaweed constructor comments redundancy
-Flaw: The parameter x and y is defined in Seaweed but is not in the constructor
-Fix: Delete it
+Code affected: Fish.r and Fish.c
+Flaw: These are no longer needed as we can simply apply super on the constructor to
+store the coordinates value.
+Fix: Erase variable r and c
+
 
 #########
 # Step 23
-Code affected: Variables in Seaweed
-Flaw: my_curr_row and my_curr_col is defined at the bottom of the class
-Fix: For better flow of the code, I am defining the 2 variables on top.
+Code affected: Fish.setLocation()
+Flaw: It is no longer needed due to a different coordinate system that we make
+Fix: Erase it
+
 
 #########
 # Step 24
-Code affected: Seaweed.l
-Flaw: variable l should be made private
-Fix: make variable l private
+Code affected: Fish.blowBubble()
+Flaw: We need to modify blowBubble() according to the new implementation of Bubble
+Fix: Modifying the old bubble to a new one.
+
 
 #########
-# Step 25
-Code affected: Seaweed.leanRight
-Flaw: variable leanRight should be made private
-Fix: make variable leanRight private
+# Step
+Code affected:
+Flaw:
+Fix:
+
 
 #########
-# Step 26
-Code affected: Seaweed.colour
-Flaw: The field colour is never used
-Fix: Delete it
+# Step
+Code affected:
+Flaw:
+Fix:
+
 
 #########
-# Step 27
-Code affected: Seaweed.drawString
-Flaw: drawString should be made private as it is a helper method
-Fix: make it private
+# Step
+Code affected:
+Flaw:
+Fix:
+
 
 #########
-# Step 28
-Code affected: Seaweed.paintText
-Flaw: paintText should be made final because the colour of the Seaweed shouldn't be changed later on
-Fix:make it final
+# Step
+Code affected:
+Flaw:
+Fix:
+
 
 #########
-# Step 29
-Code affected: Seaweed.l
-Flaw: l should be made final, because the number of seaweed is fixed in the aquarium
-Fix: make it final
+# Step
+Code affected:
+Flaw:
+Fix:
+
 
 #########
-# Step 30
-Code affected: Seaweed.draw()
-Flaw: It can be made package-private to prevent access of user
-Fix: Make it package-private
+# Step
+Code affected:
+Flaw:
+Fix:
+
 
 #########
-# Step 31
-Code affected: Seaweed.setLocation()
-Flaw: It can be made package-private to prevent access of user
-Fix: Make it package-private
+# Step
+Code affected:
+Flaw:
+Fix:
+
 
 #########
-# Step 32
-Code affected: Seaweed.wave()
-Flaw: It can be made package-private to prevent access of user
-Fix: Make it package-private
+# Step
+Code affected:
+Flaw:
+Fix:
+
 
 #########
-# Step 33
-Code affected: Seaweed.draw()
-Flaw: the if condition (i % 2 == 1 == true) has a redundant part
-Fix: change to (i % 2 == 1) instead
-
-#########
-# Step 34
-Code affected: Seaweed.draw()
-Flaw: Most of the if conditions can be simplified further
-Fix:    change
-    if((i % 2 == 0))
-        if(lR){...}
-        to
-    if((i % 2 == 0) && lR){...}
+# Step
+Code affected:
+Flaw:
+Fix:
