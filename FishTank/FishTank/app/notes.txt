@@ -159,63 +159,67 @@ Fix: Erase it
 # Step 24
 Code affected: Fish.blowBubble()
 Flaw: We need to modify blowBubble() according to the new implementation of Bubble
-Fix: Modifying the old bubble to a new one.
+Fix: Modifying the old bu
 
 
 #########
-# Step
-Code affected:
-Flaw:
-Fix:
+# Step 25
+Code affected: Fish.drawString()
+Flaw: Since drawString() is just a helper function with one statement for draw(), we can
+combine them together.
+Fix: Delete drawString() and move the body to draw().
 
 
 #########
-# Step
-Code affected:
-Flaw:
-Fix:
+# Step 26
+Code affected: Fish.move()
+Flaw: Since we want Fish to inherit the abstract method Items, we need to implement moveItem()
+Fix: Change the name of move() to moveItem()
+
+#########
+# Step 27
+Code affected: HungryFish.java
+Flaw: Since HungryFish and Fish share a lot of similarities, we can extend them.
+Fix: Extend Fish to HungryFish
+
+#########
+# Step 28
+Code affected: HungryFish.r, HungryFish.c, HungryFish.goingRight, and paintText
+Flaw: These variables are redundant as we are inheriting it from Fish
+Fix: So, we can simply erase it.
+
+#########
+# Step 29
+Code affected: HungryFish Constructor
+Flaw: it needs to inherit the super to follow the abstract method
+Fix: Call super(x, y) in the body and add the parameter int x and y in the constructor.
+
+#########
+# Step 30
+Code affected: HungryFish.setLocation()
+Flaw: Not needed as we are changing the coordinate system
+Fix: Erase it
 
 
 #########
-# Step
-Code affected:
-Flaw:
-Fix:
+# Step 31
+Code affected: HungryFish.blowBubble(), reverseAppearance(), turnAround(), draw(), drawString(), move()
+Flaw: Since all of these methods can be inherited directly from the parent class Fish, the above methods are redundant.
+Fix: Erase all.
 
 
 #########
-# Step
-Code affected:
-Flaw:
-Fix:
+# Step 32
+Code affected: FishTankManager.myLittleFishies
+Flaw: the name myLittleFishies doesn't represent the items it stores in it.
+Fix: Change to fishTankItems
 
 
 #########
-# Step
-Code affected:
-Flaw:
-Fix:
-
-
-#########
-# Step
-Code affected:
-Flaw:
-Fix:
-
-
-#########
-# Step
-Code affected:
-Flaw:
-Fix:
-
-
-#########
-# Step
-Code affected:
-Flaw:
-Fix:
+# Step 33
+Code affected: FishTankManager.myLittleFishies
+Flaw: Instead of using Object[][], List is more efficient
+Fix: Change it to a list.
 
 
 #########

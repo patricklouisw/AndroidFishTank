@@ -55,12 +55,15 @@ public class Seaweed extends Items {
             if ((i % 2 == 0) && lR) {
                 // Draw a "/" seaweed segment: even numbered and leaning to the right.
                 drawString(canvas, "/", -i + x, y);
-            } else if (i % 2 == 0) {
+
+            } else if (i % 2 == 0 && !lR) {
                 // Draw a "\\" seaweed segment: even numbered and leaning to the left.
                 drawString(canvas, "\\", -i + x, y);
+
             } else if (lR) {
                 // Draw a "/" seaweed segment: odd numbered and leaning to the right.
                 drawString(canvas, "\\", -i + x, y);
+
             } else{
                 // Draw the string for the last kind of leaning of the segment at location  my_curr_row,(-i+my_curr_col)
                 drawString(canvas, "/", -i + x, y);
@@ -78,7 +81,7 @@ public class Seaweed extends Items {
      * @param y      the y-coordinate of the string's cursor location.
      */
     public void drawString(Canvas canvas, String s, int x, int y) {
-        canvas.drawText(s, x * FishTankView.charWidth, y * FishTankView.charHeight, paintText);
+        canvas.drawText(s, y * FishTankView.charWidth, x * FishTankView.charHeight, paintText);
     }
 
     /**

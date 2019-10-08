@@ -41,8 +41,7 @@ public class Fish extends Items {
     public void blowBubble() {
         Bubble b = new Bubble(x, y);
         System.out.println(x + " " + y);
-
-        FishTankManager.myLittleFishies[r][c] = b;
+        FishTankManager.newItems.add(b);
     }
 
 
@@ -83,7 +82,8 @@ public class Fish extends Items {
                     break;
             }
         }
-        return reverse.toString();
+        appearance = reverse.toString();
+        return appearance;
     }
 
     /**
@@ -95,39 +95,25 @@ public class Fish extends Items {
     }
 
     /**
-     * Draws the given string in the given graphics context at
-     * at the given cursor location.
-     *
-     * @param canvas the canvas on which to draw this item.
-     * @param s      the string to draw.
-     * @param x      the x-coordinate of the string's cursor location.
-     * @param y      the y-coordinate of the string's cursor location.
-     */
-    public void drawString(Canvas canvas, String s, int x, int y) {
-        canvas.drawText(s, y * FishTankView.charWidth, x * FishTankView.charHeight, paintText);
-    }
-
-
-    /**
      * Draws this fish tank item.
      *
      * @param canvas the canvas on which to draw this item.
      */
     public void draw(Canvas canvas) {
-        drawString(canvas, appearance, r, c);
+        canvas.drawText(appearance, y * FishTankView.charWidth, x * FishTankView.charHeight, paintText);
     }
 
     /**
      * Causes this item to take its turn in the fish-tank simulation.
      */
-    public void move() {
+    public void moveItem() {
 
         // Move one spot to the right or left in the direction I'm going. If I bump into a wall,
         // turn around.
         if (goingRight) {
-            c += 1;
+            y += 1;
         } else {
-            c -= 1;
+            y -= 1;
         }
 
         // Figure out whether I blow a bubble.
@@ -145,9 +131,9 @@ public class Fish extends Items {
         // Figure out whether to move up or down, or neither.
         d = Math.random();
         if (d < 0.1) {
-            r += 1;
+            x += 1;
         } else if (d < 0.2) {
-            r -= 1;
+            x -= 1;
         }
     }
 }

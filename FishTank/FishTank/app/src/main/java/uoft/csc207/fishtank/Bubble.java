@@ -36,7 +36,7 @@ public class Bubble extends Items {
      * @param canvas the graphics context in which to draw this item.
      */
     public void draw(Canvas canvas) {
-        canvas.drawText(appearance, x * FishTankView.charWidth, y * FishTankView.charHeight, paintText);
+        canvas.drawText(appearance, y * FishTankView.charWidth, x * FishTankView.charHeight, paintText);
 
     }
 
