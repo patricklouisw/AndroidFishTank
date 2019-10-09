@@ -66,26 +66,32 @@ public class FishTankManager {
         for(Items item : fishTankItems) {
             item.moveItem();
         }
-
-        if (newItems.size() != 0)
-            fishTankItems.addAll(newItems);
+        fishTankItems.addAll(newItems);
     }
 
     public void createTankItems() {
-        fishTankItems.add(new Fish(28, 18));
-        fishTankItems.add(new Fish(10, 22));
-        fishTankItems.add(new Fish(17, 14));
-        fishTankItems.add(new Fish(15, 28));
-        fishTankItems.add(new Fish(35, 36));
-        fishTankItems.add(new Fish(16, 5));
-        fishTankItems.add(new Fish(16, 12));
-        fishTankItems.add(new Fish(16, 18));
-        fishTankItems.add(new Fish(23, 18));
-        fishTankItems.add(new Fish(6, 12));
-        fishTankItems.add(new HungryFish(10, 20));
-        fishTankItems.add(new Seaweed(4, 9, 33));
-        fishTankItems.add(new Seaweed(13, 6, 24));
-        fishTankItems.add(new Seaweed(15, 12, 42));
-        fishTankItems.add(new Seaweed(20, 5, 13));
+        fishTankItems.add(new Fish(18, 28));
+        fishTankItems.add(new Fish(22, 10));
+        fishTankItems.add(new Fish(14, 17));
+        fishTankItems.add(new Fish(28, 15));
+        fishTankItems.add(new Fish(18, 43));
+        fishTankItems.add(new Fish(5, 16));
+        fishTankItems.add(new Fish(12, 16));
+        fishTankItems.add(new Fish(22, 16));
+        fishTankItems.add(new Fish(18, 23));
+        fishTankItems.add(new Fish(12, 6));
+        fishTankItems.add(new HungryFish(20, 10));
+
+//        fishTankItems.add(new Seaweed(5, 5, 33));
+//        fishTankItems.add(new Seaweed(5, 4, 24));
+//        fishTankItems.add(new Seaweed(5, 6, 42));
+//
+//        fishTankItems.add(new Seaweed(10, 10, 42));
+//        fishTankItems.add(new Seaweed(9, 10, 42));
+//        fishTankItems.add(new Seaweed(11, 10, 42));
+        fishTankItems.add(new Seaweed(4, 33, 9));
+        fishTankItems.add(new Seaweed(13, 24, 6));
+        fishTankItems.add(new Seaweed(15, 42, 12));
+        fishTankItems.add(new Seaweed(20, 13, 5));
     }
 }

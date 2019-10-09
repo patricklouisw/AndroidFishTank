@@ -18,8 +18,8 @@ public abstract class Items {
      */
 
     Items(int x, int y) {
-        this.x = x;
-        this.y = y;
+        this.x = y;
+        this.y = x;
     }
 
     abstract void moveItem();

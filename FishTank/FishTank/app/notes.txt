@@ -223,6 +223,76 @@ Fix: Change it to a list.
 
 
 #########
+# Step 34
+Code affected: FishTankManager.newItems
+Flaw: This is needed as new items such as bubbles can be added later during the simulation.
+Fix: Add a new ArrayList newItems
+
+
+#########
+# Step 35
+Code affected: FishTankManager.gridWidth and gridHeight
+Flaw: Since the gridWidth and gridHeight is always fixed, we can make it final
+Fix: Make it final.
+
+#########
+# Step 36
+Code affected: FishTankManager constructor
+Flaw: fishTankItems and newItems is not yet initialize in the constructor
+Fix: Initialize these 2 in the constructor
+
+#########
+# Step 37
+Code affected: FishTankManager.draw()
+Flaw: Since we changed the coordinate system, we can need to change the implementation of draw()
+depending on the different items.
+Fix: Modifying the implementation of the body
+
+#########
+# Step
+Code affected: FishTankManager.update()
+Flaw: Since we changed the coordinate system, we can need to change the implementation of update()
+depending on the different items.
+Fix: Modifying the implementation of the body
+
+#########
+# Step
+Code affected: FishTankManager.createTankItems()
+Flaw: Since we changed the coordinate system, we can need to change the implementation of createTankItems()
+depending on the different items.
+Fix: Modifying the implementation of the body
+
+#########
+# Step
+Code affected:
+Flaw:
+Fix:
+
+#########
+# Step
+Code affected:
+Flaw:
+Fix:
+
+#########
+# Step
+Code affected:
+Flaw:
+Fix:
+
+#########
+# Step
+Code affected:
+Flaw:
+Fix:
+
+#########
+# Step
+Code affected:
+Flaw:
+Fix:
+
+#########
 # Step
 Code affected:
 Flaw:

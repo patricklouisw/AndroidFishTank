@@ -40,7 +40,7 @@ public class Fish extends Items {
      */
     public void blowBubble() {
         Bubble b = new Bubble(x, y);
-        System.out.println(x + " " + y);
+//        System.out.println(x + " " + y);
         FishTankManager.newItems.add(b);
     }
 

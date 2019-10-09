@@ -41,15 +41,15 @@ public class Bubble extends Items {
     }
 
     public void moveItem() {
-        y--; //move up
+        x--; //move up
         double d = Math.random();
 
         if (d < 0.3) {
             // float right
-            x++;
+            y++;
         } else if (d > 0.6) {
             // float left
-            x--;
+            y--;
         }
 
         // Figure out whether to grow, if at all.
