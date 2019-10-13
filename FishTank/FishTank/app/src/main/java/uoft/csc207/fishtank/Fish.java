@@ -5,10 +5,15 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * A fish.
  */
 public class Fish extends Items {
+
+    private static Map<Character, Character> SYMBOLS = new HashMap<>();
 
     /**
      * How this fish appears on the screen.
@@ -32,6 +37,7 @@ public class Fish extends Items {
         paintText.setColor(Color.CYAN);
         paintText.setTypeface(Typeface.DEFAULT_BOLD);
         goingRight = true;
+        addReversedSymbols();
     }
 
 
@@ -49,6 +55,10 @@ public class Fish extends Items {
         FishTankManager.fishTankItems.add(p);
     }
 
+    private static void addReversedSymbols(){
+        SYMBOLS.put('>', '<');
+        SYMBOLS.put('<', '>');
+    }
 
     /**
      * Build and initialize this fish's forward and backward
@@ -57,17 +67,7 @@ public class Fish extends Items {
     public String reverseAppearance() {
         StringBuilder reverse = new StringBuilder();
         for (int i = appearance.length() - 1; i >= 0; i--) {
-            switch (appearance.charAt(i)) {
-                case '>':
-                    reverse.append('<');
-                    break;
-                case '<':
-                    reverse.append('>');
-                    break;
-                default:
-                    reverse.append(appearance.charAt(i));
-                    break;
-            }
+            reverse.append(SYMBOLS.getOrDefault(appearance.charAt(i), appearance.charAt(i)));
         }
         appearance = reverse.toString();
         return appearance;
@@ -139,7 +139,7 @@ public class Fish extends Items {
 
         // Figure out whether I poop.
         d = Math.random();
-        if (d < 0.005) {
+        if (d < 0.004) {
             poop();
         }
     }

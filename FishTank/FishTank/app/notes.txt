@@ -270,16 +270,15 @@ Fix: So, we flipped it back.
 
 #########
 # Step 41
-Code affected: FishTankManager.removeItem(Items b)
-Flaw: I need to create this new method to remove bubbles that will go out of bounds
+Code affected: FishTankManager.removeBubbles
+Flaw: Create this List to store of bubbles that needs to be removed.
 Fix: Create it
 
 #########
 # Step 42
-Code affected: FishTankManager.cleanFishTankItems()
-Flaw: This new method is created to add bubbles and check whether any of the bubbles
-out of bounds
-Fix: Create this method
+Code affected: FishTankManager.update()
+Flaw: addBubbles into the FishTankItems and removeBubbles in the FishTankItems
+Fix: Implement it
 
 #########
 # Step 43
@@ -455,11 +454,17 @@ Code affected: FishTankManager.update()
 Flaw: remove the poop that is supposed to be remove
 Fix: Implement it in update()
 
+#################
+STEP N+1
+#################
+
 #########
 # Step
-Code affected:
-Flaw:
-Fix:
+Code affected: Fish.reverseAppearance()
+Flaw: The switch statement is considered as code smell. This is because often code for a single
+switch can be scattered in different places in the program.
+When a new condition is added, you have to find all the switch code and modify it.
+Fix: We use a hashmap to store the keys and values of the reversed appearance.
 
 #########
 # Step

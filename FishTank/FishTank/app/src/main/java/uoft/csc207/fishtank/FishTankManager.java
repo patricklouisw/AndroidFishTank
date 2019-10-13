@@ -23,8 +23,6 @@ public class FishTankManager {
 
     public static List<Poo> removePoop;
 
-    
-
     /**
      * The width of myLittleFishes.
      */
@@ -86,11 +84,12 @@ public class FishTankManager {
     }
 
     public void createTankItems() {
+
         fishTankItems.add(new Ground(FishTankManager.getGridHeight()-5, 0 ,FishTankManager.getGridWidth() - 1));
-//        fishTankItems.add(new Fish(18, 28));
-//        fishTankItems.add(new Fish(22, 10));
-//        fishTankItems.add(new Fish(14, 17));
-//        fishTankItems.add(new Fish(28, 15));
+        fishTankItems.add(new Fish(18, 28));
+        fishTankItems.add(new Fish(22, 10));
+        fishTankItems.add(new Fish(14, 17));
+        fishTankItems.add(new Fish(28, 15));
         fishTankItems.add(new Fish(36, 35));
         fishTankItems.add(new Fish(5, 16));
         fishTankItems.add(new Fish(12, 16));
