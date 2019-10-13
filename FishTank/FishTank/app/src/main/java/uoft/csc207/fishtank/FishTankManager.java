@@ -67,12 +67,6 @@ public class FishTankManager {
         removePoop = new ArrayList<>();
     }
 
-    public static void removeItem(Items b) {
-        if (fishTankItems.contains(b)){
-            fishTankItems.remove(b);
-        }
-    }
-
     public void draw(Canvas canvas) {
         for(Items item : fishTankItems) {
             item.draw(canvas);

@@ -438,6 +438,106 @@ Flaw: If the Crab is in the position of the fish poo, the poo will be removed. H
 we need to add this particular poo in the removePoo list.
 Fix: Implement this method
 
+########################
+Changes in FishTankManager to make our Features works
+########################
+
+#########
+# Step 1
+Code affected: Create an ArrayList bottomPoop and removePoop
+Flaw: This is to store the fish Poo that is on the ground and the poo that needs will
+be clean by the crab.
+Fix: Implement it and Initialise it in the constructor
+
+#########
+# Step 2
+Code affected: FishTankManager.update()
+Flaw: remove the poop that is supposed to be remove
+Fix: Implement it in update()
+
+#########
+# Step
+Code affected:
+Flaw:
+Fix:
+
+#########
+# Step
+Code affected:
+Flaw:
+Fix:
+
+#########
+# Step
+Code affected:
+Flaw:
+Fix:
+
+#########
+# Step
+Code affected:
+Flaw:
+Fix:
+
+#########
+# Step
+Code affected:
+Flaw:
+Fix:
+
+#########
+# Step
+Code affected:
+Flaw:
+Fix:
+
+#########
+# Step
+Code affected:
+Flaw:
+Fix:
+
+#########
+# Step
+Code affected:
+Flaw:
+Fix:
+
+#########
+# Step
+Code affected:
+Flaw:
+Fix:
+#########
+# Step
+Code affected:
+Flaw:
+Fix:
+
+#########
+# Step
+Code affected:
+Flaw:
+Fix:
+
+#########
+# Step
+Code affected:
+Flaw:
+Fix:
+
+#########
+# Step
+Code affected:
+Flaw:
+Fix:
+
+#########
+# Step
+Code affected:
+Flaw:
+Fix:
+
 #########
 # Step
 Code affected:
