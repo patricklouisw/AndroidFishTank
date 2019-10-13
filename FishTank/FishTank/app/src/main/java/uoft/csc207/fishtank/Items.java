@@ -13,17 +13,24 @@ public abstract class Items {
     /**
      * Constructs aan item in the fish tank/
      *
-     * @param x the x-coordinate of this item.
-     * @param y the y-coordinate of this item.
+     * @param row the x-coordinate of this item.
+     * @param col the y-coordinate of this item.
      */
 
-    Items(int x, int y) {
-        this.x = y;
-        this.y = x;
+    Items(int col, int row) {
+        this.x = row;
+        this.y = col;
     }
 
     abstract void moveItem();
 
     abstract void draw(Canvas canvas);
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
 }

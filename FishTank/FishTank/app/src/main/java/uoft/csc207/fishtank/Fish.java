@@ -25,8 +25,8 @@ public class Fish extends Items {
     /**
      * Constructs a new fish.
      */
-    public Fish(int x, int y) {
-        super(x, y);
+    public Fish(int y, int x) {
+        super(y, x);
         appearance = "><>";
         paintText.setTextSize(36);
         paintText.setColor(Color.CYAN);
@@ -39,9 +39,14 @@ public class Fish extends Items {
      * Causes this fish to blow a bubble.
      */
     public void blowBubble() {
-        Bubble b = new Bubble(x, y);
+        Bubble b = new Bubble(y, x);
 //        System.out.println(x + " " + y);
         FishTankManager.newItems.add(b);
+    }
+
+    public void poop() {
+        Poo p = new Poo(y, x);
+        FishTankManager.fishTankItems.add(p);
     }
 
 
@@ -53,29 +58,11 @@ public class Fish extends Items {
         StringBuilder reverse = new StringBuilder();
         for (int i = appearance.length() - 1; i >= 0; i--) {
             switch (appearance.charAt(i)) {
-                case ')':
-                    reverse.append('(');
-                    break;
-                case '(':
-                    reverse.append(')');
-                    break;
                 case '>':
                     reverse.append('<');
                     break;
                 case '<':
                     reverse.append('>');
-                    break;
-                case '}':
-                    reverse.append('{');
-                    break;
-                case '{':
-                    reverse.append('}');
-                    break;
-                case '[':
-                    reverse.append(']');
-                    break;
-                case ']':
-                    reverse.append('[');
                     break;
                 default:
                     reverse.append(appearance.charAt(i));
@@ -100,7 +87,7 @@ public class Fish extends Items {
      * @param canvas the canvas on which to draw this item.
      */
     public void draw(Canvas canvas) {
-        canvas.drawText(appearance, y * FishTankView.charWidth, x * FishTankView.charHeight, paintText);
+        canvas.drawText(appearance, x * FishTankView.charWidth, y * FishTankView.charHeight, paintText);
     }
 
     /**
@@ -110,10 +97,38 @@ public class Fish extends Items {
 
         // Move one spot to the right or left in the direction I'm going. If I bump into a wall,
         // turn around.
-        if (goingRight) {
-            y += 1;
-        } else {
-            y -= 1;
+        if (getX() == 0) {
+            x++;
+            turnAround();
+        } else if (getX() == FishTankManager.getGridWidth() - 1) {
+            x--;
+            turnAround();
+        }else {
+            if (goingRight) {
+                x++;
+            } else {
+                x--;
+            }
+
+            // Figure out whether I turn around.
+            double d = Math.random();
+            if (d < 0.1) {
+                turnAround();
+            }
+        }
+
+        // Figure out whether to move up or down, or neither.
+        if (getY() == 0) {
+            y++;
+        } else if (getY() == FishTankManager.getGridHeight()) {
+            y--;
+        } else{
+            double d = Math.random();
+            if (d < 0.1) {
+                y++;
+            } else if (d < 0.2) {
+                y--;
+            }
         }
 
         // Figure out whether I blow a bubble.
@@ -122,18 +137,11 @@ public class Fish extends Items {
             blowBubble();
         }
 
-        // Figure out whether I turn around.
+        // Figure out whether I poop.
         d = Math.random();
-        if (d < 0.1) {
-            turnAround();
-        }
-
-        // Figure out whether to move up or down, or neither.
-        d = Math.random();
-        if (d < 0.1) {
-            x += 1;
-        } else if (d < 0.2) {
-            x -= 1;
+        if (d < 0.0025) {
+            poop();
         }
     }
+
 }

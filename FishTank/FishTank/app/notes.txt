@@ -249,42 +249,56 @@ depending on the different items.
 Fix: Modifying the implementation of the body
 
 #########
-# Step
+# Step 38
 Code affected: FishTankManager.update()
 Flaw: Since we changed the coordinate system, we can need to change the implementation of update()
 depending on the different items.
 Fix: Modifying the implementation of the body
 
 #########
-# Step
+# Step 39
 Code affected: FishTankManager.createTankItems()
-Flaw: Since we changed the coordinate system, we can need to change the implementation of createTankItems()
+Flaw: Since we changed the coordinate system, we need to change the implementation of createTankItems()
 depending on the different items.
 Fix: Modifying the implementation of the body
 
 #########
-# Step
-Code affected:
-Flaw:
-Fix:
+# Step 40
+Code affected: draw()
+Flaw: For all the draw methods, the x and the y coordinate is flipped.
+Fix: So, we flipped it back.
 
 #########
-# Step
-Code affected:
-Flaw:
-Fix:
+# Step 41
+Code affected: FishTankManager.removeItem(Items b)
+Flaw: I need to create this new method to remove bubbles that will go out of bounds
+Fix: Create it
 
 #########
-# Step
-Code affected:
-Flaw:
-Fix:
+# Step 42
+Code affected: FishTankManager.cleanFishTankItems()
+Flaw: This new method is created to add bubbles and check whether any of the bubbles
+out of bounds
+Fix: Create this method
 
 #########
-# Step
-Code affected:
-Flaw:
-Fix:
+# Step 43
+Code affected: FishTankManager.update()
+Flaw: cleanFishTankItems() hasn't been implemented in update()
+Fix:Implement cleanFishTankItems() in update
+
+#########
+# Step 44
+Code affected: Fish.reverseAppearance()
+Flaw: There are way too many cases involved to flipped the symbols, even though
+Fish appearance only have '<' and '>'.
+Fix: Delete the irrelevant ones.
+
+#########
+# Step 45
+Code affected: Fish.moveItem()
+Flaw: Add a boundary to the fish, so it won't go out of the screen
+Fix: Find the boundaries of the phone and if the fish passed it, turn it around.
 
 #########
 # Step

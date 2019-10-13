@@ -31,8 +31,8 @@ public class Seaweed extends Items {
      * @param y the y-coordinate of the seaweed.
      * @param l the number of segments this seaweed is tall.
      */
-    public Seaweed(int x, int y, int l) {
-        super(x, y);
+    public Seaweed(int y, int x, int l) {
+        super(y, x);
         this.l = l;
         paintText.setTextSize(36);
         paintText.setColor(Color.GREEN);
@@ -54,34 +54,21 @@ public class Seaweed extends Items {
         for (int i = 0; i < l; i++) {
             if ((i % 2 == 0) && lR) {
                 // Draw a "/" seaweed segment: even numbered and leaning to the right.
-                drawString(canvas, "/", -i + x, y);
+                canvas.drawText("/", x * FishTankView.charWidth, (-i + y) * FishTankView.charHeight, paintText);
 
             } else if (i % 2 == 0 && !lR) {
                 // Draw a "\\" seaweed segment: even numbered and leaning to the left.
-                drawString(canvas, "\\", -i + x, y);
+                canvas.drawText("\\", x * FishTankView.charWidth, (-i + y) * FishTankView.charHeight, paintText);
 
             } else if (lR) {
                 // Draw a "/" seaweed segment: odd numbered and leaning to the right.
-                drawString(canvas, "\\", -i + x, y);
+                canvas.drawText("\\", x * FishTankView.charWidth, (-i + y) * FishTankView.charHeight, paintText);
 
             } else{
                 // Draw the string for the last kind of leaning of the segment at location  my_curr_row,(-i+my_curr_col)
-                drawString(canvas, "/", -i + x, y);
+                canvas.drawText("/", x * FishTankView.charWidth, (-i + y) * FishTankView.charHeight, paintText);
             }
         }
-    }
-
-    /**
-     * Draws the given string in the given graphics context at
-     * at the given cursor location.
-     *
-     * @param canvas where to draw the string.
-     * @param s      the string to draw.
-     * @param x      the x-coordinate of the string's cursor location.
-     * @param y      the y-coordinate of the string's cursor location.
-     */
-    public void drawString(Canvas canvas, String s, int x, int y) {
-        canvas.drawText(s, y * FishTankView.charWidth, x * FishTankView.charHeight, paintText);
     }
 
     /**
