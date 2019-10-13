@@ -41,7 +41,7 @@ public class Fish extends Items {
     public void blowBubble() {
         Bubble b = new Bubble(y, x);
 //        System.out.println(x + " " + y);
-        FishTankManager.newItems.add(b);
+        FishTankManager.addBubbles.add(b);
     }
 
     public void poop() {
@@ -120,7 +120,7 @@ public class Fish extends Items {
         // Figure out whether to move up or down, or neither.
         if (getY() == 0) {
             y++;
-        } else if (getY() == FishTankManager.getGridHeight()) {
+        } else if (getY() == FishTankManager.getGridHeight() - 5) {
             y--;
         } else{
             double d = Math.random();
@@ -139,7 +139,7 @@ public class Fish extends Items {
 
         // Figure out whether I poop.
         d = Math.random();
-        if (d < 0.0025) {
+        if (d < 0.005) {
             poop();
         }
     }

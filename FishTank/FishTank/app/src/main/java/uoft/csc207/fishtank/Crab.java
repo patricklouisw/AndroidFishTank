@@ -70,6 +70,19 @@ public class Crab extends Items {
                 x--;
             }
         }
+
+        removePoop();
+    }
+
+    public void removePoop() {
+        if (FishTankManager.bottomPoop.size() != 0) {
+            for (Poo p : FishTankManager.bottomPoop) {
+                int poop_x = p.getX();
+                if (poop_x == x) {
+                    FishTankManager.removePoop.add(p);
+                }
+            }
+        }
     }
 
 }

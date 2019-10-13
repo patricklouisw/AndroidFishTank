@@ -224,8 +224,8 @@ Fix: Change it to a list.
 
 #########
 # Step 34
-Code affected: FishTankManager.newItems
-Flaw: This is needed as new items such as bubbles can be added later during the simulation.
+Code affected: FishTankManager.addBubbles
+Flaw: This is needed as new bubbles can be added later during the simulation.
 Fix: Add a new ArrayList newItems
 
 
@@ -301,10 +301,142 @@ Flaw: Add a boundary to the fish, so it won't go out of the screen
 Fix: Find the boundaries of the phone and if the fish passed it, turn it around.
 
 #########
-# Step
-Code affected:
-Flaw:
+# Step 46
+Code affected: FishTankManager.removeBubbles
+Flaw: removeBubbles list is added to store the bubbles that are about to be out of bounds in a list
+so they can be removed later.
+Fix: Initialize removeBubbles in FishTankManager
+
+#########
+# Step 47
+Code affected: Bubbles.moveItem()
+Flaw: We need this to record the bubbles we need to remove.
+Fix: Create a condition in which if the bubbles is almost out of bounds, add it into removeBubbles
+
+######################
+Adding a new Feature
+######################
+
+The feature that we will add is a Ground for the FishTank and a crab that will walk on the ground.
+Also, the fish can defecate and it's feces will float down to the bottom and the crab will clean it
+out.
+
+#######################
+1st Feature: The Ground
+#######################
+
+#########
+# Step 1
+Code affected: Create a class Ground that is a super class of Items
+Flaw: This is needed to create Ground
+Fix: Create it
+
+#########
+# Step 2
+Code affected: Ground.appearance, paintText, and l
+Flaw: We need these variables to initialize the appearance, color and the length of the sand.
+Fix: Variable is initialised in Ground
+
+#########
+# Step 3
+Code affected: Ground constructor
+Flaw: We need a constructor to construct the Ground
+Fix: Create a Ground constructor
+
+#########
+# Step 4
+Code affected: Ground.draw()
+Flaw: This is needed to draw the ground on the canvas
+Fix: Implement this method
+
+#########
+# Step 5
+Code affected: Ground.moveItem()
+Flaw: Since Ground inherits from Item, Ground needs to implement moveItem(). However,
+since there are nothing to be moved, we can simply leave it blank.
+Fix: Since Ground inherits from Item, Ground needs to implement moveItem(). However,
+    since there are nothing to be moved, we can simply leave it blank.
+
+########################
+2nd Feature: Poop
+########################
+
+#########
+# Step 1
+Code affected: Create class Poo that extends Items
+Flaw: We need this to Create Fish Poo
+Fix: Implement it
+
+#########
+# Step 2
+Code affected: Make variables
+Flaw: appearance, paintText is needed to control the feature of the poo
+Fix: Implement it
+
+#########
+# Step 3
+Code affected: Make a Poo Constructor
+Flaw: This is needed to give the colour and the apperance and the coordinate of the poo
+Fix: Implement it.
+
+#########
+# Step 4
+Code affected: Poo.draw()
+Flaw: This is needed so the poo is drawn on the canvas.
+Fix: Implement it
+
+#########
+# Step 5
+Code affected: Poo.moveItem()
+Flaw: Move the fish poo so it floats down until it reach the ground.
+Fix: Implement it.
+
+########################
+3rd Feature: Adding Crab
+########################
+
+#########
+# Step 1
+Code affected: Create Crab class that extends Items
+Flaw: It is needed to create crab
+Fix: Create it
+
+#########
+# Step 2
+Code affected: Set up the needed variable in Crab
+Flaw: apperance, goingRight, paintText is needed to control the features of the crab.
+Fix: Make these variables
+
+#########
+# Step 3
+Code affected: Crab constructor
+Flaw: Needed to construct the crab
+Fix: Implement constructor
+
+#########
+# Step 4
+Code affected: Crab.turnAround()
+Flaw: This is needed so the crab can walk into the opposite direction.
+Fix: Implement it.
+
+#########
+# Step 5
+Code affected: Crab.draw(Canvas canvas)
+Flaw: This is needed so the crab can be drawn in the canvas
+Fix: Implement it
+
+#########
+# Step 6
+Code affected: moveItem()
+Flaw: This is needed so we can control the movement of the crab,
 Fix:
+
+#########
+# Step 7
+Code affected: removePoop()
+Flaw: If the Crab is in the position of the fish poo, the poo will be removed. Hence,
+we need to add this particular poo in the removePoo list.
+Fix: Implement this method
 
 #########
 # Step

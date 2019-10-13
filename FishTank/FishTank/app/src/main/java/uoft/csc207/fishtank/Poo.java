@@ -41,7 +41,11 @@ public class Poo extends Items {
     }
 
     public void moveItem() {
-        y++; //move down
+        if (y != FishTankManager.getGridHeight()-6) {
+            y++;
+        } else if (y == FishTankManager.getGridHeight()-6) {
+            FishTankManager.bottomPoop.add(this);
+        }
     }
 
 }

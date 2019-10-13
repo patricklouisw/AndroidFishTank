@@ -15,10 +15,16 @@ public class FishTankManager {
     /**
      * All the locations where the items can be.
      */
-    public static List<Items> newItems;
+    public static List<Bubble> addBubbles;
+
+    public static ArrayList<Bubble> removeBubbles;
 
     public static List<Poo> bottomPoop;
+
+    public static List<Poo> removePoop;
+
     
+
     /**
      * The width of myLittleFishes.
      */
@@ -55,8 +61,10 @@ public class FishTankManager {
         gridHeight = height;
         gridWidth = width;
         fishTankItems = new ArrayList<>();
-        newItems = new ArrayList<>();
+        addBubbles = new ArrayList<>();
+        removeBubbles = new ArrayList<>();
         bottomPoop = new ArrayList<>();
+        removePoop = new ArrayList<>();
     }
 
     public static void removeItem(Items b) {
@@ -65,57 +73,22 @@ public class FishTankManager {
         }
     }
 
-//    public static boolean isEmpty(int x, int y) {
-//        for(Items item : fishTankItems) {
-//            int x_item = item.getX();
-//            int y_item = item.getY();
-//            if (x == x_item && y == y_item){
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-
-//    public static void removeItem(Items item) {
-//        fishTankItems.remove(item);
-//    }
-
     public void draw(Canvas canvas) {
         for(Items item : fishTankItems) {
             item.draw(canvas);
         }
     }
 
-    public void cleanFishTankItems() {
-        fishTankItems.addAll(newItems);
-        newItems.clear();
-
-        for(Items item : fishTankItems) {
-            if (item instanceof Bubble ) {
-                if (item.getY() == 0) {
-                    removeItem(item);
-                }
-            } else if (item instanceof Crab && bottomPoop.size() != 0) {
-                for (Poo p : bottomPoop) {
-                    if (p.getX() == item.getX()) {
-                        bottomPoop.remove(p);
-                        removeItem(p);
-                    }
-                }
-            }
-        }
-    }
-
     public void update() {
         for(Items item : fishTankItems) {
-            if (item instanceof Poo && (item.getY() == FishTankManager.getGridHeight()-6)) {
-                bottomPoop.add((Poo) item);
-                continue;
-            }else {
                 item.moveItem();
-            }
         }
-        cleanFishTankItems();
+        fishTankItems.addAll(addBubbles);
+        addBubbles.clear();
+        fishTankItems.removeAll(removeBubbles);
+        removeBubbles.clear();
+        fishTankItems.removeAll(removePoop);
+        removePoop.clear();
     }
 
     public void createTankItems() {

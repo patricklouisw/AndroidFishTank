@@ -53,6 +53,10 @@ public class Bubble extends Items {
             x--;
         }
 
+        if (y == 0) {
+            FishTankManager.removeBubbles.add(this);
+        }
+
         // Figure out whether to grow, if at all.
         d = Math.random();
         // Occasionally change a . to a o or a o to a O
