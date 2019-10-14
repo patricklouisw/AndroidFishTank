@@ -459,7 +459,7 @@ STEP N+1
 #################
 
 #########
-# Step
+# Code Smell: Switch
 Code affected: Fish.reverseAppearance()
 Flaw: The switch statement is considered as code smell. This is because often code for a single
 switch can be scattered in different places in the program.
@@ -467,84 +467,19 @@ When a new condition is added, you have to find all the switch code and modify i
 Fix: We use a hashmap to store the keys and values of the reversed appearance.
 
 #########
-# Step
-Code affected:
-Flaw:
-Fix:
+# Code Smell: encapsulation
+Code affected: Pretty much all variables and all methods except for draw(Canvas canvas)
+and moveItem(), getter and setter, constructors, getGridWidth, getGridHeight, and update()
+Flaw: This is an issue as we want to make as many variables and methods to be private
+whenever possible to reduce any chances of information being change along the way.
+Also, preventing access of client towards implementation of the Tank
+Fix: Make pretty much all variables in all file private. Make a getter and a setter if needed.
+And make helper function private.
 
 #########
-# Step
-Code affected:
-Flaw:
-Fix:
-
-#########
-# Step
-Code affected:
-Flaw:
-Fix:
-
-#########
-# Step
-Code affected:
-Flaw:
-Fix:
-
-#########
-# Step
-Code affected:
-Flaw:
-Fix:
-
-#########
-# Step
-Code affected:
-Flaw:
-Fix:
-
-#########
-# Step
-Code affected:
-Flaw:
-Fix:
-
-#########
-# Step
-Code affected:
-Flaw:
-Fix:
-#########
-# Step
-Code affected:
-Flaw:
-Fix:
-
-#########
-# Step
-Code affected:
-Flaw:
-Fix:
-
-#########
-# Step
-Code affected:
-Flaw:
-Fix:
-
-#########
-# Step
-Code affected:
-Flaw:
-Fix:
-
-#########
-# Step
-Code affected:
-Flaw:
-Fix:
-
-#########
-# Step
-Code affected:
-Flaw:
-Fix:
+# Code Smell: Comments
+Code affected: In all the files
+Flaw: Since we have renamed most of the variables and methods to make sense on the purpose that
+it should do, we do not need to use confusing comments, which just increases the length of the code.
+Fix: Delete unnecessary comments in all the files. Provide comments to only necessary ones, such as
+boundary limits of the fish Tank, etc.

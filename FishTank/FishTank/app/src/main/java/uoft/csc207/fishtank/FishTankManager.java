@@ -5,57 +5,76 @@ import android.graphics.Canvas;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FishTankManager {
+class FishTankManager {
 
     /**
      * All the locations where the items can be.
      */
-    public static List<Items> fishTankItems;
+    private static List<Items> fishTankItems;
 
     /**
-     * All the locations where the items can be.
+     * Any additional items that will be added into the tank can be store in the variables below
      */
-    public static List<Bubble> addBubbles;
+    private static List<Bubble> addBubbles;
 
-    public static ArrayList<Bubble> removeBubbles;
+    private static ArrayList<Bubble> removeBubbles;
 
-    public static List<Poo> bottomPoop;
+    private static List<Poo> bottomPoop;
 
-    public static List<Poo> removePoop;
+    private static List<Poo> removePoop;
+
+    private static List<Poo> addPoop;
+
+    static void addingBubbles(Bubble b) {
+        addBubbles.add(b);
+    }
+
+    static void addingRemoveBubbles(Bubble b) {
+        removeBubbles.add(b);
+    }
+
+    static void addingBottomPoop(Poo p) {
+        bottomPoop.add(p);
+    }
+
+    static void addingRemovePoop(Poo p) {
+        removePoop.add(p);
+    }
+
+    static void addingPoop(Poo p) {
+        addPoop.add(p);
+    }
+
+    static List<Poo> getBottomPoop(){
+        return bottomPoop;
+    }
+
+    static void removeBottomPoop(List<Poo> p){
+        bottomPoop.removeAll(p);
+    }
 
     /**
-     * The width of myLittleFishes.
+     * The width of the Tank.
      */
     private static int gridWidth;
 
     /**
-     * The height of myLittleFishes.
+     * The height of the Tank.
      */
     private static int gridHeight;
 
-
-    /**
-     * Return the width of a row of locations.
-     *
-     * @return the width of a column of locations.
-     */
-    public static int getGridWidth() {
+    static int getGridWidth() {
         return gridWidth;
     }
 
-    /**
-     * Return the height of a column of locations.
-     *
-     * @return the height of a column of locations.
-     */
-    public static int getGridHeight() {
+    static int getGridHeight() {
         return gridHeight;
     }
 
     /**
      * The fish tank manager on a screen with height rows and width columns.
      */
-    public FishTankManager(int height, int width) {
+    FishTankManager(int height, int width) {
         gridHeight = height;
         gridWidth = width;
         fishTankItems = new ArrayList<>();
@@ -63,18 +82,21 @@ public class FishTankManager {
         removeBubbles = new ArrayList<>();
         bottomPoop = new ArrayList<>();
         removePoop = new ArrayList<>();
+        addPoop = new ArrayList<> ();
     }
 
-    public void draw(Canvas canvas) {
+    void draw(Canvas canvas) {
         for(Items item : fishTankItems) {
             item.draw(canvas);
         }
     }
 
-    public void update() {
+    void update() {
         for(Items item : fishTankItems) {
                 item.moveItem();
         }
+        fishTankItems.addAll(addPoop);
+        addPoop.clear();
         fishTankItems.addAll(addBubbles);
         addBubbles.clear();
         fishTankItems.removeAll(removeBubbles);
@@ -83,8 +105,7 @@ public class FishTankManager {
         removePoop.clear();
     }
 
-    public void createTankItems() {
-
+    void createTankItems() {
         fishTankItems.add(new Ground(FishTankManager.getGridHeight()-5, 0 ,FishTankManager.getGridWidth() - 1));
         fishTankItems.add(new Fish(18, 28));
         fishTankItems.add(new Fish(22, 10));

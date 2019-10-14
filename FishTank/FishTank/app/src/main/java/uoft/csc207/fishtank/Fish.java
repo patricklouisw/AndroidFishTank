@@ -11,48 +11,45 @@ import java.util.Map;
 /**
  * A fish.
  */
-public class Fish extends Items {
+class Fish extends Items {
 
     private static Map<Character, Character> SYMBOLS = new HashMap<>();
 
-    /**
-     * How this fish appears on the screen.
-     */
-    String appearance;
+    private String appearance;
 
-    /**
-     * Indicates whether this fish is moving right.
-     */
-    boolean goingRight;
+    private boolean goingRight = true;
 
-    final Paint paintText = new Paint();
+    private final Paint paintText = new Paint();
 
-    /**
-     * Constructs a new fish.
-     */
-    public Fish(int y, int x) {
+    String getAppearance() {
+        return appearance;
+    }
+
+    void setAppearance(String s) {
+        appearance = s;
+    }
+
+    Fish(int y, int x) {
         super(y, x);
         appearance = "><>";
         paintText.setTextSize(36);
         paintText.setColor(Color.CYAN);
         paintText.setTypeface(Typeface.DEFAULT_BOLD);
-        goingRight = true;
         addReversedSymbols();
     }
 
-
-    /**
-     * Causes this fish to blow a bubble.
-     */
-    public void blowBubble() {
+    private void blowBubble() {
+        int x = this.getX();
+        int y = this.getY();
         Bubble b = new Bubble(y, x);
-//        System.out.println(x + " " + y);
-        FishTankManager.addBubbles.add(b);
+        FishTankManager.addingBubbles(b);
     }
 
-    public void poop() {
+    private void poop() {
+        int x = this.getX();
+        int y = this.getY();
         Poo p = new Poo(y, x);
-        FishTankManager.fishTankItems.add(p);
+        FishTankManager.addingPoop(p);
     }
 
     private static void addReversedSymbols(){
@@ -60,11 +57,7 @@ public class Fish extends Items {
         SYMBOLS.put('<', '>');
     }
 
-    /**
-     * Build and initialize this fish's forward and backward
-     * appearances.
-     */
-    public String reverseAppearance() {
+    private String reverseAppearance() {
         StringBuilder reverse = new StringBuilder();
         for (int i = appearance.length() - 1; i >= 0; i--) {
             reverse.append(SYMBOLS.getOrDefault(appearance.charAt(i), appearance.charAt(i)));
@@ -73,41 +66,39 @@ public class Fish extends Items {
         return appearance;
     }
 
-    /**
-     * Turns this fish around, causing it to reverse direction.
-     */
-    public void turnAround() {
+    private void turnAround() {
         goingRight = !goingRight;
         appearance = reverseAppearance();
     }
 
-    /**
-     * Draws this fish tank item.
-     *
-     * @param canvas the canvas on which to draw this item.
-     */
-    public void draw(Canvas canvas) {
-        canvas.drawText(appearance, x * FishTankView.charWidth, y * FishTankView.charHeight, paintText);
+    void draw(Canvas canvas) {
+        canvas.drawText(appearance, this.getX() * FishTankView.charWidth, this.getY() * FishTankView.charHeight, paintText);
     }
 
-    /**
-     * Causes this item to take its turn in the fish-tank simulation.
-     */
-    public void moveItem() {
+    void moveItem() {
+        int x = this.getX();
+        int y = this.getY();
+        int width = FishTankManager.getGridWidth();
+
+        if (this instanceof HungryFish){
+            width -= 7;
+        } else {
+            width -= 1;
+        }
 
         // Move one spot to the right or left in the direction I'm going. If I bump into a wall,
         // turn around.
         if (getX() == 0) {
-            x++;
+            this.setX(++x);
             turnAround();
-        } else if (getX() == FishTankManager.getGridWidth() - 1) {
-            x--;
+        } else if (getX() == width) {
+            this.setX(--x);
             turnAround();
         }else {
             if (goingRight) {
-                x++;
+                this.setX(++x);
             } else {
-                x--;
+                this.setX(--x);
             }
 
             // Figure out whether I turn around.
@@ -119,15 +110,15 @@ public class Fish extends Items {
 
         // Figure out whether to move up or down, or neither.
         if (getY() == 0) {
-            y++;
-        } else if (getY() == FishTankManager.getGridHeight() - 5) {
-            y--;
+            this.setY(++y);
+        } else if (getY() == FishTankManager.getGridHeight() - 7) {
+            this.setY(--y);
         } else{
             double d = Math.random();
             if (d < 0.1) {
-                y++;
+                this.setY(++y);
             } else if (d < 0.2) {
-                y--;
+                this.setY(--y);
             }
         }
 
@@ -139,7 +130,7 @@ public class Fish extends Items {
 
         // Figure out whether I poop.
         d = Math.random();
-        if (d < 0.004) {
+        if (d < 0.003) {
             poop();
         }
     }

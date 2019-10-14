@@ -5,15 +5,15 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 
-public class Ground extends Items{
+class Ground extends Items{
 
-    String appearance;
+    private String appearance;
 
-    final Paint paintText = new Paint();
+    private final Paint paintText = new Paint();
 
-    final int l;
+    private final int l;
 
-    public Ground(int y, int x, int l) {
+    Ground(int y, int x, int l) {
         super(y,1);
         appearance = "=";
 
@@ -24,12 +24,12 @@ public class Ground extends Items{
         this.l = l;
     }
 
-    public void draw(Canvas canvas) {
+    void draw(Canvas canvas) {
         for (int i = 0; i < l; i++) {
-            canvas.drawText(appearance, (x + i) * FishTankView.charWidth, y * FishTankView.charHeight, paintText);
+            canvas.drawText(appearance, (this.getX() + i) * FishTankView.charWidth, this.getY() * FishTankView.charHeight, paintText);
         }
     }
 
-    public void moveItem(){}
+    void moveItem(){}
 
 }

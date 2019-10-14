@@ -2,13 +2,13 @@ package uoft.csc207.fishtank;
 
 import android.graphics.Canvas;
 
-public abstract class Items {
+abstract class Items {
 
     // X-coordinate of the item
-    int x;
+    private int x;
 
     // Y-coordinate of the item
-    int y;
+    private int y;
 
     /**
      * Constructs aan item in the fish tank/
@@ -22,15 +22,31 @@ public abstract class Items {
         this.y = col;
     }
 
+    /**
+     * Causes this item to take its turn in the fish-tank simulation.
+     */
     abstract void moveItem();
 
+    /**
+     * Draws this fish tank item.
+     *
+     * @param canvas the graphics context in which to draw this item.
+     */
     abstract void draw(Canvas canvas);
 
-    public int getX() {
+    void setX(int x) {
+        this.x = x;
+    }
+
+    void setY(int y) {
+        this.y = y;
+    }
+
+    int getX() {
         return x;
     }
 
-    public int getY() {
+    int getY() {
         return y;
     }
 }

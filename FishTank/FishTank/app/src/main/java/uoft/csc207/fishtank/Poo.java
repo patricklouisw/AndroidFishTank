@@ -2,26 +2,19 @@ package uoft.csc207.fishtank;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.ImageFormat;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 
-/**
- * A Poo
- */
-public class Poo extends Items {
+class Poo extends Items {
 
-    /**
-     * How this bubble appears on the screen.
-     */
     private String appearance;
 
-    final Paint paintText = new Paint();
+    private final Paint paintText = new Paint();
 
     /**
-     * Constructs a new bubble at the specified cursor location (x, y).
+     * Constructs a new poo at the specified cursor location (x, y).
      */
-    public Poo(int y, int x) {
+    Poo(int y, int x) {
         super(y, x);
         // Get a nice-looking grey for the bubble
         paintText.setTextSize(30);
@@ -31,20 +24,18 @@ public class Poo extends Items {
         appearance = "<POO>";
     }
 
-    /**
-     * Draws this fish tank item.
-     *
-     * @param canvas the graphics context in which to draw this item.
-     */
-    public void draw(Canvas canvas) {
-        canvas.drawText(appearance, x * FishTankView.charWidth, y * FishTankView.charHeight, paintText);
+    void draw(Canvas canvas) {
+        canvas.drawText(appearance, this.getX() * FishTankView.charWidth, this.getY() * FishTankView.charHeight, paintText);
     }
 
-    public void moveItem() {
+    void moveItem() {
+        int x = this.getX();
+        int y = this.getY();
+
         if (y != FishTankManager.getGridHeight()-6) {
-            y++;
+            this.setY(++y);
         } else if (y == FishTankManager.getGridHeight()-6) {
-            FishTankManager.bottomPoop.add(this);
+            FishTankManager.addingBottomPoop(this);
         }
     }
 

@@ -2,26 +2,19 @@ package uoft.csc207.fishtank;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.ImageFormat;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 
-/**
- * A bubble.
- */
-public class Bubble extends Items {
+class Bubble extends Items {
 
-    /**
-     * How this bubble appears on the screen.
-     */
     private String appearance;
 
-    final Paint paintText = new Paint();
+    private final Paint paintText = new Paint();
 
     /**
      * Constructs a new bubble at the specified cursor location (x, y).
      */
-    public Bubble(int y, int x) {
+    Bubble(int y, int x) {
         super(y, x);
         // Get a nice-looking grey for the bubble
         paintText.setTextSize(36);
@@ -31,30 +24,28 @@ public class Bubble extends Items {
         appearance = ".";
     }
 
-    /**
-     * Draws this fish tank item.
-     *
-     * @param canvas the graphics context in which to draw this item.
-     */
-    public void draw(Canvas canvas) {
-        canvas.drawText(appearance, x * FishTankView.charWidth, y * FishTankView.charHeight, paintText);
+    void draw(Canvas canvas) {
+        canvas.drawText(appearance, this.getX() * FishTankView.charWidth, this.getY() * FishTankView.charHeight, paintText);
     }
 
-    public void moveItem() {
-        y--; //move up
+    void moveItem() {
+        int x = this.getX();
+        int y = this.getY();
+
+        this.setY(--y);
 
         double d = Math.random();
 
         if (d < 0.3) {
             // float right
-            x++;
+            this.setX(++x);
         } else if (d < 0.6) {
             // float left
-            x--;
+            this.setX(--x);
         }
 
         if (y == 0) {
-            FishTankManager.removeBubbles.add(this);
+            FishTankManager.addingRemoveBubbles(this);
         }
 
         // Figure out whether to grow, if at all.
